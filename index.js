@@ -1,11 +1,11 @@
 const gateway = require('fast-gateway'),
     port = 8080,
     routes = [{
-            prefix: '/module/discord',
+            prefix: '/discord',
             target: 'http://127.0.0.1:3003'
         },
         {
-            prefix: '/module/sql',
+            prefix: '/sql',
             target: 'http://127.0.0.1:3002'
         },
         {
@@ -28,7 +28,19 @@ const gateway = require('fast-gateway'),
         }
     ],
     server = gateway({
-        routes: routes
+        routes: routes,
+
+        middlewares: [(req, res, next) => {
+
+            // przekazywanie przekierowanego ip do headera
+            req.headers['x-forwarded-from'] = req.connection.remoteAddress;
+            
+            // w tym miejscu mozna dodawac headery przez proxy
+            res.setHeader('x-powered-by', 'pti-main');
+            res.setHeader('x-forwarded-for', req.connection.remoteAddress);
+            return next();
+        }]
+
     });
  
 server.start(port);
