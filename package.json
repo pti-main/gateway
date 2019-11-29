@@ -1,0 +1,23 @@
+{
+  "name": "gateway",
+  "version": "0.0.1",
+  "description": "fast-gateway",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pti-main/gateway.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pti-main/gateway/issues"
+  },
+  "homepage": "https://github.com/pti-main/gateway#readme",
+  "dependencies": {
+    "fast-gateway": "^1.3.9"
+  }
+}
